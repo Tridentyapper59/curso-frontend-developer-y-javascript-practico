@@ -45,17 +45,17 @@ function togglecarritoaside(){
 
 const productlist=[];
 productlist.push({
-    name:"bike",
+    name:"Bike",
     price:120,
     Image:"https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
 })
 productlist.push({
-    name:"pantalla",
+    name:"Pantalla",
     price:320,
     Image:"https://www.tradeinn.com/f/13821/138212880/samsung-monitor-gaming-odyssey-g3-24-full-hd-lcd-140hz.jpg"
 })
 productlist.push({
-    name:"computador",
+    name:"Computador",
     price:650,
     Image:"https://cdn.shopify.com/s/files/1/0555/5100/0726/products/AX6-inalambrico-24ips_50b4ab2e-d5d2-4b94-829d-851c241ad733_1024x1024.jpg?v=1676569661"
 })
@@ -64,7 +64,7 @@ for (product of productlist){
     productCard.classList.add("product-card");
 
     const productimg=document.createElement("img");
-    productimg.setAttribute("src", product.image);
+    productimg.setAttribute("src", product.Image);
 
     const productinfo=document.createElement("div");
     productinfo.classList.add("product-info");
