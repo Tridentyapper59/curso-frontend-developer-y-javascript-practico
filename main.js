@@ -3,12 +3,15 @@ const desktopmenu = document.querySelector(".desktop-menu")
 const menu_barra_lateral_mobile = document.querySelector(".menu")
 const menumobile = document.querySelector(".mobile-menu")
 const menucarritoicon = document.querySelector(".navbar-shopping-cart")
+const productdetailcloseicon = document.querySelector(".product-detail-close")
 const shoppingcartcontainer = document.querySelector("#shoppingcartcontainer")
+const productdetailcontainer = document.querySelector("#productdetail")
 const cardscontainer = document.querySelector(".cards-container")
 
 menucarritoicon.addEventListener("click", togglecarritoaside)
 menuEmail.addEventListener("click", toggleDesktopmenu)
 menu_barra_lateral_mobile.addEventListener("click", togglemobilemenu)
+productdetailcloseicon.addEventListener("click", closeproductdetailaside)
 
 // se coloca el toggle por lo que se quiere mostrar con el cursor y desaparecer cuando no este 
 
@@ -24,23 +27,35 @@ function togglemobilemenu(){
     const isAsideclosed=shoppingcartcontainer.classList.contains("inactive")
     if(!isAsideclosed){
         // se abre el aside   
-        aside.classList.add("inactive")
+        shoppingcartcontainer.classList.add("inactive")
     }
 
+    closeproductdetailaside()
+
     menumobile.classList.toggle("inactive")
+    
 }
 function togglecarritoaside(){
     const isMobilemenuclosed=menumobile.classList.contains("inactive")
-    const isAsideclosed=shoppingcartcontainer.classList.contains("inactive")
     if(!isMobilemenuclosed){
             menumobile.classList.add("inactive")
         }
-    if(!isAsideclosed){
-        desktopmenu.classList.add("inactive")
+    const isproductdetailclosed=productdetailcontainer.classList.contains("inactive")
+    if(!isproductdetailclosed){
+        productdetailcontainer.classList.add("inactive")
     }
-    
+       
     shoppingcartcontainer.classList.toggle("inactive")
     
+}
+function openproductdetailaside(){
+    shoppingcartcontainer.classList.add("inactive")
+    productdetailcontainer.classList.remove("inactive")
+
+    
+}
+function closeproductdetailaside(){
+    productdetailcontainer.classList.add("inactive")
 }
 
 const productlist=[];
@@ -61,13 +76,14 @@ productlist.push({
 })
 
 
-function renderproducts(arr){
+function renderProducts(arr){
     for (product of arr){
         const productCard=document.createElement("div");
         productCard.classList.add("product-card");
     
         const productimg=document.createElement("img");
         productimg.setAttribute("src", product.Image);
+        productimg.addEventListener("click", openproductdetailaside)
     
         const productinfo=document.createElement("div");
         productinfo.classList.add("product-info");
@@ -99,3 +115,4 @@ function renderproducts(arr){
         cardscontainer.appendChild(productCard)
     }
 }
+renderProducts(productlist)
